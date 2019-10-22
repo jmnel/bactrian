@@ -1,8 +1,9 @@
-from .symbol import Symbol
+from .expression import Expression
 
-class Variable(Symbol):
+class Symbol(Expression):
     def __init__(self, label):
-        super(Variable, self).__init__(label)
+        self.label = label
 
     def __repr__(self):
         return '{}'.format( self.label )
+
