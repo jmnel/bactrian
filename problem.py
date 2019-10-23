@@ -15,6 +15,8 @@ class Problem:
         self._build_objective_vector()
         self._build_constraints_matrix()
 
+        print( 'Dromedary 1.0.0 (August 22 2019 9:39:22) [Python 3.7.3] :: Dromedary Inc.' )
+
     def _assign_variable_indices(self):
         for i in range( 0, len( self.variables ) ):
             self.variables[i].index = i
@@ -64,5 +66,22 @@ class Problem:
                 self.b_eq.append( b )
             else:
                 raise Exception( 'Invalid relation type' )
+
+    def __repr__(self):
+        str = '# Problem: {}\n'.format(self.label)
+        str += 'List of variables:\n'
+        str += '{}'.format(self.variables[0])
+        for i in range(1,len(self.variables)):
+            str+= ', {}'.format( self.variables[i] )
+        str+='\n'
+        str+='# Objective:\n'
+        str+='minimize {}\n'.format( self.objective )
+        str+='# List of constraints:\n'
+        for c in self.constraints:
+            str+='{}\n'.format( c )
+        str+='# Call fullreport(name) to get more details of the variable, obj, or constraint of the name.'
+        str+='\n\n\n'
+
+        return str
 
 

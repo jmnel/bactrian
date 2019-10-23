@@ -13,8 +13,8 @@ class Mul(Expression):
         self.args = tuple( bractify(e) for e in new_args )
 
     def __repr__(self):
+        from .add import Add
         str = ''
-#        str += '{}'.format( self.args[0] )
         for i in range(0,len(self.args)):
             a = self.args[i]
             if type( a ) is Add:
@@ -26,6 +26,3 @@ class Mul(Expression):
                 str += ' * '
 
         return str
-
-
-#from numeric_types import Float

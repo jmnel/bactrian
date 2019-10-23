@@ -57,24 +57,56 @@ def parse_symbol_times_scalar( expr ):
     if not type( expr ) is Mul and not issubclass( type( expr ), Symbol ):
         raise Exception( 'Failed to parse expression: "{}" must be type Mul or Symbol'.format( expr ) )
 
-    if issubclass( type( expr ), Symbol ) :
-        return [ 1, expr ]
-    elif issubclass( type( expr.args[0] ), Numeric ) and  issubclass( type( expr.args[1] ), Symbol ):
-        coef = expr.args[0]
-        symb = expr.args[1]
-        return coef, symb
-    elif issubclass( type( expr.args[0] ), Symbol ) and issubclass( type( expr.args[1] ), Numeric ):
+    if issubclass(type(expr), Symbol):
+        return 1, expr
+
+    is_subclass_of_symbol = list(map(
+            lambda a : issubclass(type(a), Symbol), expr.args))
+    is_subclass_of_numeric = list(map(
+            lambda a : issubclass(type(a), Numeric), expr.args))
+
+    symbol_count = is_subclass_of_symbol.count(True)
+    numeric_count = is_subclass_of_numeric.count(True)
+
+    if not symbol_count == 1:
+        raise Exception('Failed to parse expression: "{}" must contain exactly one of type Smybol'
+                .format(expr))
+
+    if not numeric_count == len(expr.args)-1:
+        raise Exception('Failed to parse expression: "{}" must contain n-1 of type Numeric'
+                .format(expr))
+
+    coef = 1
+    for i in range(0, len(expr.args)):
+        if is_subclass_of_symbol[i]:
+            assert(not is_subclass_of_numeric[i])
+            symb = expr.args[i]
+        else:
+            assert(is_subclass_of_numeric[i])
+            coef *= expr.args[i].value
+
+    return coef, symb
+
+#    if issubclass( type( expr ), Symbol ) :
+#        return [ 1, expr ]
+#    elif issubclass( type( expr.args[0] ), Numeric ) and  issubclass( type( expr.args[1] ), Symbol ):
+#        coef = expr.args[0]
+#        symb = expr.args[1]
+#        return coef, symb
+#    elif issubclass( type( expr.args[0] ), Symbol ) and issubclass( type( expr.args[1] ), Numeric ):
 #    elif type( expr.args[0] ) is Symbol and type( expr.args[1] ) is Numeric:
-        coef = expr.args[1]
-        symb = expr.args[0]
-        return coef, symb
-    else:
-        raise Exception( 'Failed to parse expresion: "{}" does not match symbol times scalar pattern'
-                .format( expr ) )
+#        coef = expr.args[1]
+#        symb = expr.args[0]
+#        return coef, symb
+#    else:
+#        raise Exception( 'Failed to parse expresion: "{}" does not match symbol times scalar pattern'
+#                .format( expr ) )
 
 
 def parse_linear_combination( expr ):
-
+    from .symbol import Symbol
+    if issubclass( type( expr ), Symbol ):
+        return [ [ 1, expr ] ]
     if type( expr ) is Mul:
         return [ parse_symbol_times_scalar( expr ) ]
     elif type( expr ) is Add:

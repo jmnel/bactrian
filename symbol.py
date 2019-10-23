@@ -5,5 +5,9 @@ class Symbol(Expression):
         self.label = label
 
     def __repr__(self):
-        return '{}'.format( self.label )
+        return '{}'.format(self.label)
+
+    def __neg__(self):
+        from .mul import Mul
+        return Mul((-1, self))
 
