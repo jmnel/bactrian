@@ -11,6 +11,8 @@ Solve the following linear programming model
 
 <img src="https://latex.codecogs.com/gif.latex?\text{minimize}\:&space;x&space;&plus;&space;2y" title="\text{minimize}\: x + 2y" />
 
+<br>
+
 <img src="https://latex.codecogs.com/gif.latex?\text{s.t.}\quad&space;\begin{matrix}&space;-5x&space;&plus;&space;2y&space;&&space;=&space;&&space;7&space;\\&space;x&space;&plus;&space;y&space;&&space;\geq&space;&&space;26&space;\\&space;x,&space;y&space;&&space;\geq&space;&&space;0&space;\\&space;\end{matrix}" title="\text{s.t.}\quad \begin{matrix} -5x + 2y & = & 7 \\ x + y & \geq & 26 \\ x, y & \geq & 0 \\ \end{matrix}" />
 
 ```python
