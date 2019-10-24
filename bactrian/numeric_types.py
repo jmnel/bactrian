@@ -4,30 +4,30 @@ class Numeric:
     pass
 
 class Float(Numeric, Expression):
-    def __init__(self, value):
+    def __init__(self, value: float):
         self.value = value
 
     def __float__(self):
         return self.value
 
     def __repr__(self):
-        return '{}'.format(self.value)
+        return ('%f' % self.value)
 
     def __neg__(self):
-        return Float( -self.vaue )
+        return Float(-self.vaue)
 
 class Integer(Numeric, Expression):
-    def __init__(self, value):
+    def __init__(self, value: int):
         self.value = value
 
     def __int__(self):
         return self.value
 
     def __float__(self):
-        return (float)(self.value)
+        return float(self.value)
 
     def __repr__(self):
-        return '{}'.format(self.value)
+        return ('%d' % self.value)
 
     def __neg__(self):
-        return Integer( -self.value )
+        return Integer(-self.value)
