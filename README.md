@@ -7,7 +7,7 @@ research problems, aiming to mirror the API of Dromedary Studio
 
 ### Example
 
-Solve the following linear programming model
+Solve the following linear programming model:
 
 <img src="https://latex.codecogs.com/gif.latex?\text{minimize}\:&space;x&space;&plus;&space;2y" title="\text{minimize}\: x + 2y" />
 
