@@ -1,12 +1,12 @@
 from scipy.optimize import linprog
-from problem import Problem
+from .problem import Problem
 
 def scipylinprog(problem: Problem, solver_method: str = 'revised simplex'):
 
     valid_methods = {'interior-point', 'revised simplex', 'simplex'}
     if not solver_method in valid_methods:
-        raise ValueError( '%s is invalid solver method\n
-        valid methods are: %s' % (solver_method, repr(valid_methods)
+        raise ValueError( '%s is invalid solver method\n'\
+        'valid methods are: %s' % (solver_method, repr(valid_methods)
             [1:-1]))
 
     has_inequality_constraints = len(problem.mat_a_ub) != 0
@@ -36,5 +36,5 @@ def scipylinprog(problem: Problem, solver_method: str = 'revised simplex'):
         print('# Solverstatus: Optimization terminated successfully')
         print('# Objective value: %f' % res.fun)
         print('# Primal values:')
-        for i, var in enumerate problem.variables):
-            print('%s= %f' % problem.variables[i].label, res.x[i]))
+        for i, var in enumerate(problem.variables):
+            print('%s= %f' % problem.variables[i].label, res.x[i])

@@ -3,7 +3,7 @@ from .expression import Expression, bractify
 class Add(Expression):
 
     def __init__(self, *args):
-        assert len(args) > 1 'Add must have atleast 2 args.'
+        assert len(args) > 1, 'Add must have atleast 2 args.'
 
         new_args = list()
         for a in args:

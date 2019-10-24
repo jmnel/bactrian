@@ -83,7 +83,7 @@ def parse_symbol_times_scalar(expr):
     coef, symb = 1, None
     for i, arg in enumerate(expr.args):
         if is_symbol[i]:
-            assert (not is_numeric[i]), ('not is_numeric[%d]' % i))
+            assert (not is_numeric[i]), ('not is_numeric[%d]' % i)
             symb = arg
         else:
             assert is_numeric[i] ('is_numeric[%d]' % i)
