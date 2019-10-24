@@ -9,7 +9,9 @@ research problems, aiming to mirror the API of Dromedary Studio
 
 Solve the following linear programming model
 
-<img src="http://www.sciweavers.org/tex2img.php?eq=x%2B2y%5Crightarrow%5Cmin%0A%5C%5C%5C%5C%0A%5Ctext%7Bsubject%20to%3A%7D%5Cquad%0A%5Cbegin%7Bmatrix%7D%0A-5x%2B2y%20%26%20%3D%20%26%207%20%5C%5C%0Ax%2B%20y%20%26%20%5Cgeq%20%26%2026%20%5C%5C%0Ax%20%5Cgeq%200%2C%20y%20%5Cgeq%200%20%5C%5C%0A%5Cend%7Bmatrix%7D&bc=White&fc=Black&im=gif&fs=12&ff=modern&edit=0" align="center" border="0" alt="x+2y\rightarrow\min\\\\\text{subject to:}\quad\begin{matrix}-5x+2y & = & 7 \\x+ y & \geq & 26 \\x \geq 0, y \geq 0 \\\end{matrix}" width="236" height="101" />
+<img src="https://latex.codecogs.com/gif.latex?\text{minimize}\:&space;x&space;&plus;&space;2y" title="\text{minimize}\: x + 2y" />
+
+<img src="https://latex.codecogs.com/gif.latex?\text{s.t.}\quad&space;\begin{matrix}&space;-5x&space;&plus;&space;2y&space;&&space;=&space;&&space;7&space;\\&space;x&space;&plus;&space;y&space;&&space;\geq&space;&&space;26&space;\\&space;x,&space;y&space;&&space;\geq&space;&&space;0&space;\\&space;\end{matrix}" title="\text{s.t.}\quad \begin{matrix} -5x + 2y & = & 7 \\ x + y & \geq & 26 \\ x, y & \geq & 0 \\ \end{matrix}" />
 
 ```python
 from bactrian import Variable, Constraint, Objective, Problem, scipylinprog
@@ -19,10 +21,10 @@ x = Variable('x')
 y = Variable('y')
 
 # Define objective function.
-obj = Objective('obj', x + 2y)
+obj = Objective('obj', x + 2*y)
 
 # Define constraints.
-cstr1 = Constraint('cstr1', -5x + 2y == 7)
+cstr1 = Constraint('cstr1', -5*x + 2*y == 7)
 cstr2 = Constraint('cstr2', x + y >= 26)
 # x >= 0 and y >= 0 are implicitly assumed as is standard in LP.
 
